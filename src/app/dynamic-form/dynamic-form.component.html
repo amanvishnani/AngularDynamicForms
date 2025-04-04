@@ -1,0 +1,19 @@
+<form [formGroup]="form">
+<div *ngFor="let section of formConfig">
+    <h2>{{ section.name }}</h2>
+    <div *ngFor="let subSection of section.subSections">
+      <h3>{{ subSection.name }}</h3>
+      <div *ngFor="let field of subSection.fields">
+        <label>{{ field.name }}</label>
+        <ng-container [ngSwitch]="field.type">
+          <app-email-input *ngSwitchCase="'email'" [control]="$any(form).controls[field.name]"></app-email-input>
+          <!-- <app-input-country *ngSwitchCase="'country'" [formControl]="$any(form).controls[field.name]" [disabled]="field.disabled"></app-input-country> -->
+          <input *ngSwitchDefault [type]="field.type" [formControl]="$any(form).controls[field.name]">
+        </ng-container>
+      </div>
+    </div>
+  </div>
+  {{form.status}}
+  <button type="submit">Submit</button>
+</form> 
+  
