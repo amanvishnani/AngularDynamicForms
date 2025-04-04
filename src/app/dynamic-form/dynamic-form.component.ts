@@ -1,15 +1,23 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 import { FormFieldConfig, FormSectionConfig } from './DynamicFormConfig';
 import { EmailInputComponent } from '../email-input/email-input.component';
 
 @Component({
   selector: 'app-dynamic-form',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule, EmailInputComponent],
+  imports: [
+    ReactiveFormsModule,
+    CommonModule,
+    EmailInputComponent,
+    MatFormFieldModule,
+    MatInputModule,
+  ],
   templateUrl: './dynamic-form.component.html',
-  styleUrl: './dynamic-form.component.css'
+  styleUrl: './dynamic-form.component.css',
 })
 export class DynamicFormComponent implements OnInit{
   @Input() formConfig: FormSectionConfig[] = [];

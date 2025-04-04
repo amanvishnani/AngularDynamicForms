@@ -23,9 +23,9 @@ export class AppComponent implements OnInit {
         {
           name: 'Basic Info',
           fields: [
-            { name: 'First Name', type: 'text', validations: { required: true } },
+            { name: 'First Name', type: 'text', validations: { required: false } },
             { name: 'Last Name', type: 'text', validations: { required: true }, disabled: true },
-            { name: 'Email', type: 'email', validations: { required: true, pattern: '^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$' } },
+            { name: 'Email', type: 'email', validations: { pattern: '^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$' } },
             { name: 'Country', type: 'country' },
           ]
         }
