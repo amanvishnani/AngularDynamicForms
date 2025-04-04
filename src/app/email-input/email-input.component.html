@@ -4,7 +4,7 @@
   <mat-error *ngIf="control.hasError('required')">
     Email is required
   </mat-error>
-  <mat-error *ngIf="control.hasError('email')">
+  <mat-error *ngIf="control.hasError('pattern')">
     Please enter a valid email address
   </mat-error>
 </mat-form-field>
