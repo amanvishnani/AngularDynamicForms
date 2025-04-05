@@ -26,7 +26,7 @@ export class AppComponent implements OnInit {
             { name: 'First Name', type: 'text', validations: { required: false } },
             { name: 'Last Name', type: 'text', validations: { required: true }, disabled: true },
             { name: 'Email', type: 'email', validations: {  } },
-            { name: 'Country', type: 'country' },
+            { name: 'Country', type: 'country', validations: { required: true } },
           ]
         }
       ]

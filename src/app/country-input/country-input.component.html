@@ -1,0 +1,17 @@
+<mat-form-field appearance="outline">
+  <mat-label>Country</mat-label>
+  <input type="text"
+         placeholder="Select a country"
+         aria-label="Country"
+         matInput
+         [formControl]="control"
+         [matAutocomplete]="auto">
+  <mat-autocomplete #auto="matAutocomplete">
+    <mat-option *ngFor="let country of filteredCountries | async" [value]="country">
+      {{country}}
+    </mat-option>
+  </mat-autocomplete>
+  <mat-error *ngIf="control.hasError('required')">
+    Country is required
+  </mat-error>
+</mat-form-field>

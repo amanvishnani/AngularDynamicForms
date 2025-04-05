@@ -5,6 +5,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { FormFieldConfig, FormSectionConfig } from './DynamicFormConfig';
 import { EmailInputComponent } from '../email-input/email-input.component';
+import { CountryInputComponent } from '../country-input/country-input.component'; // Import CountryInputComponent
 
 @Component({
   selector: 'app-dynamic-form',
@@ -13,6 +14,7 @@ import { EmailInputComponent } from '../email-input/email-input.component';
     ReactiveFormsModule,
     CommonModule,
     EmailInputComponent,
+    CountryInputComponent, // Add CountryInputComponent here
     MatFormFieldModule,
     MatInputModule,
   ],
