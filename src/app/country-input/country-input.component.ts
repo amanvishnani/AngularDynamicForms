@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { AbstractControl, FormControl, ReactiveFormsModule, ValidationErrors, ValidatorFn, Validators } from '@angular/forms'; // Import validation types
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
@@ -18,11 +18,23 @@ import { map, startWith } from 'rxjs/operators';
     MatAutocompleteModule,
   ],
   templateUrl: './country-input.component.html',
-  styleUrls: ['./country-input.component.css'] // Corrected from styleUrl
+  styleUrls: ['./country-input.component.css']
 })
 export class CountryInputComponent implements OnInit {
 
-  @Input({ required: true }) control!: FormControl; // Use definite assignment assertion
+  // Static validator function
+  static countryValidator(countries: string[]): ValidatorFn {
+    return (control: AbstractControl): ValidationErrors | null => {
+      const value = control.value;
+      if (!value) {
+        return null; // Don't validate empty values, let 'required' handle that
+      }
+      const isValid = countries.some(country => country.toLowerCase() === value.toLowerCase());
+      return isValid ? null : { invalidCountry: true };
+    };
+  }
+
+  @Input({ required: true }) control!: FormControl;
 
   countries: string[] = [ // Static list of countries
     'Afghanistan', 'Albania', 'Algeria', 'Andorra', 'Angola', 'Antigua and Barbuda', 'Argentina', 'Armenia', 'Australia', 'Austria',
@@ -52,11 +64,18 @@ export class CountryInputComponent implements OnInit {
 
   ngOnInit() {
     if (!this.control) {
-      this.control = new FormControl(''); // Initialize if not provided, though Input is required
+      // This case should ideally not happen if the input is truly required,
+      // but adding validator defensively.
+      this.control = new FormControl('', CountryInputComponent.countryValidator(this.countries));
+    } else {
+      // Add the validator to the existing control instance
+      this.control.addValidators(CountryInputComponent.countryValidator(this.countries));
+      this.control.updateValueAndValidity(); // Ensure validator is checked initially
     }
+
     this.filteredCountries = this.control.valueChanges.pipe(
       startWith(''),
-      map(value => this._filter(value || ''))
+      map(value => this._filter(value || '')),
     );
   }
 

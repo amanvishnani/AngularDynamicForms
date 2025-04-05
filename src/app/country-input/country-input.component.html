@@ -14,4 +14,7 @@
   <mat-error *ngIf="control.hasError('required')">
     Country is required
   </mat-error>
+  <mat-error *ngIf="control.hasError('invalidCountry')">
+    Please select a valid country from the list
+  </mat-error>
 </mat-form-field>
