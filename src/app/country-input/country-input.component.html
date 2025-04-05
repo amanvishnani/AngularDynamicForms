@@ -1,11 +1,15 @@
-<mat-form-field appearance="outline">
+<mat-form-field appearance="outline" class="country-input-field"> <!-- Added class for potential styling -->
   <mat-label>Country</mat-label>
+  <mat-icon matPrefix *ngIf="!control.value">search</mat-icon> <!-- Search icon prefix -->
   <input type="text"
          placeholder="Select a country"
          aria-label="Country"
          matInput
          [formControl]="control"
          [matAutocomplete]="auto">
+  <button mat-icon-button matSuffix *ngIf="control.value" (click)="control.setValue('')" aria-label="Clear country">
+    <mat-icon>close</mat-icon>
+  </button>
   <mat-autocomplete #auto="matAutocomplete">
     <mat-option *ngFor="let country of filteredCountries | async" [value]="country">
       {{country}}

@@ -3,9 +3,12 @@ import { AbstractControl, FormControl, ReactiveFormsModule, ValidationErrors, Va
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatIconModule } from '@angular/material/icon'; // Import MatIconModule
 import { CommonModule } from '@angular/common';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
+import {MatButtonModule} from '@angular/material/button';
+
 
 @Component({
   selector: 'app-country-input',
@@ -16,6 +19,8 @@ import { map, startWith } from 'rxjs/operators';
     MatFormFieldModule,
     MatInputModule,
     MatAutocompleteModule,
+    MatIconModule, // Add MatIconModule here
+    MatButtonModule
   ],
   templateUrl: './country-input.component.html',
   styleUrls: ['./country-input.component.css']
