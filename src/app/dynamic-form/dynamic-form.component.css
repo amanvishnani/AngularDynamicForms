@@ -1,0 +1,26 @@
+mat-card {
+  margin: 10px;
+}
+
+.mat-card-header {
+  background-color: #f0f0f0;
+}
+
+.mat-divider {
+  margin: 10px 0;
+}
+
+.form-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.form-container > div {
+  width: 50%;
+  height: 100%;
+}
+
+.subsection-container {
+  display: flex;
+  flex-direction: column;
+}

@@ -1,20 +1,31 @@
 <form [formGroup]="form">
-<div *ngFor="let section of formConfig">
-    <h2>{{ section.name }}</h2>
-    <div *ngFor="let subSection of section.subSections">
-      <h3>{{ subSection.name }}</h3>
-      <div *ngFor="let field of subSection.fields">
-        <ng-container [ngSwitch]="field.type">
-          <app-email-input *ngSwitchCase="'email'" [control]="$any(form).controls[field.name]"></app-email-input>
-          <app-country-input *ngSwitchCase="'country'" [control]="$any(form).controls[field.name]"></app-country-input>
-          <app-province-input *ngSwitchCase="'province'" [control]="$any(form).controls[field.name]"></app-province-input> <!-- Add province input case -->
-          <app-dropdown-input *ngSwitchCase="'dropdown'" [control]="$any(form).controls[field.name]" [label]="field.name"[items]="field.options || []"></app-dropdown-input>
-          <mat-form-field *ngSwitchDefault>
-            <mat-label>{{ field.name }}</mat-label>
-            <input matInput [type]="field.type" [formControl]="$any(form).controls[field.name]">
-          </mat-form-field>
-        </ng-container>
-      </div>
+  <div class="form-container">
+    <div *ngFor="let section of formConfig" style="width: 50%;">
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title>{{ section.name }}</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <div *ngFor="let subSection of section.subSections; let last = last">
+            <h3>{{ subSection.name }}</h3>
+            <div class="subsection-container">
+              <div *ngFor="let field of subSection.fields">
+                <ng-container [ngSwitch]="field.type">
+                  <app-email-input *ngSwitchCase="'email'" [control]="$any(form).controls[field.name]"></app-email-input>
+                  <app-country-input *ngSwitchCase="'country'" [control]="$any(form).controls[field.name]"></app-country-input>
+                  <app-province-input *ngSwitchCase="'province'" [control]="$any(form).controls[field.name]"></app-province-input>
+                  <app-dropdown-input *ngSwitchCase="'dropdown'" [control]="$any(form).controls[field.name]" [label]="field.name" [items]="field.options || []"></app-dropdown-input>
+                  <mat-form-field *ngSwitchDefault>
+                    <mat-label>{{ field.name }}</mat-label>
+                    <input matInput [type]="field.type" [formControl]="$any(form).controls[field.name]">
+                  </mat-form-field>
+                </ng-container>
+              </div>
+            </div>
+            <mat-divider *ngIf="!last"></mat-divider>
+          </div>
+        </mat-card-content>
+      </mat-card>
     </div>
   </div>
   {{form.status}}

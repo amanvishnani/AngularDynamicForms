@@ -7,7 +7,10 @@ import { FormFieldConfig, FormSectionConfig } from './DynamicFormConfig';
 import { EmailInputComponent } from '../email-input/email-input.component';
 import { CountryInputComponent } from '../country-input/country-input.component';
 import { ProvinceInputComponent } from '../province-input/province-input.component';
-import { DropdownInput } from "../dropdown-input/dropdown-input.component"; // Import ProvinceInputComponent
+import { DropdownInput } from "../dropdown-input/dropdown-input.component";
+import { MatCardModule } from '@angular/material/card';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatGridListModule } from '@angular/material/grid-list';
 
 @Component({
   selector: 'app-dynamic-form',
@@ -17,10 +20,13 @@ import { DropdownInput } from "../dropdown-input/dropdown-input.component"; // I
     CommonModule,
     EmailInputComponent,
     CountryInputComponent,
-    ProvinceInputComponent, // Add ProvinceInputComponent here
+    ProvinceInputComponent,
     MatFormFieldModule,
     MatInputModule,
-    DropdownInput
+    DropdownInput,
+    MatCardModule,
+    MatDividerModule,
+    MatGridListModule
 ],
   templateUrl: './dynamic-form.component.html',
   styleUrl: './dynamic-form.component.css',
