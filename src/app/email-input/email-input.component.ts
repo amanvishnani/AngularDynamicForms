@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { CommonModule } from '@angular/common';
@@ -18,10 +18,18 @@ import { CommonModule } from '@angular/common';
 })
 export class EmailInputComponent {
 
-  @Input({required: true}) control: FormControl;
+  private _control!: FormControl;
+
+  @Input({required: true})
+  set control(control: FormControl) {
+    this._control = control;
+    this._control.addValidators(Validators.pattern('^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$'));
+  }
+  get control(): FormControl {
+    return this._control;
+  }
 
   constructor() {
-    this.control = new FormControl();
   }
 
 }
