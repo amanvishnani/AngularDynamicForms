@@ -1,0 +1,24 @@
+<mat-form-field appearance="outline" class="location-input-field">
+  <mat-label>{{label}}</mat-label>
+  <mat-icon matPrefix *ngIf="!control.value">search</mat-icon>
+  <input type="text"
+         placeholder="Select an item"
+         aria-label="Item"
+         matInput
+         [formControl]="control"
+         [matAutocomplete]="auto">
+  <button mat-icon-button matSuffix *ngIf="control.value" (click)="clearValue()" aria-label="Clear">
+    <mat-icon>close</mat-icon>
+  </button>
+  <mat-autocomplete #auto="matAutocomplete">
+    <mat-option *ngFor="let item of filteredItems | async" [value]="item">
+      {{item}}
+    </mat-option>
+  </mat-autocomplete>
+  <mat-error *ngIf="control.hasError('required')">
+    {{label}} is required
+  </mat-error>
+  <mat-error *ngIf="control.hasError('invalidLocation')">
+    Please select a valid {{label}} from the list
+  </mat-error>
+</mat-form-field>

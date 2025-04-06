@@ -1,14 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { AbstractControl, FormControl, ReactiveFormsModule, ValidationErrors, ValidatorFn, Validators } from '@angular/forms'; // Import validation types
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
-import { MatAutocompleteModule } from '@angular/material/autocomplete';
-import { MatIconModule } from '@angular/material/icon'; // Import MatIconModule
+import { Component, Input } from '@angular/core';
+import { FormControl, ReactiveFormsModule, ValidatorFn } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { Observable } from 'rxjs';
-import { map, startWith } from 'rxjs/operators';
-import {MatButtonModule} from '@angular/material/button';
-
+import { DropdownInput } from '../dropdown-input/dropdown-input.component';
 
 @Component({
   selector: 'app-country-input',
@@ -16,32 +9,22 @@ import {MatButtonModule} from '@angular/material/button';
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatAutocompleteModule,
-    MatIconModule, // Add MatIconModule here
-    MatButtonModule
+    DropdownInput
   ],
-  templateUrl: './country-input.component.html',
+  template: `
+    <app-dropdown-input
+      [control]="control"
+      [items]="countries"
+      [label]="'Country'"
+      [validator]="countryValidator">
+    </app-dropdown-input>
+  `,
   styleUrls: ['./country-input.component.css']
 })
-export class CountryInputComponent implements OnInit {
-
-  // Static validator function
-  static countryValidator(countries: string[]): ValidatorFn {
-    return (control: AbstractControl): ValidationErrors | null => {
-      const value = control.value;
-      if (!value) {
-        return null; // Don't validate empty values, let 'required' handle that
-      }
-      const isValid = countries.some(country => country.toLowerCase() === value.toLowerCase());
-      return isValid ? null : { invalidCountry: true };
-    };
-  }
-
+export class CountryInputComponent {
   @Input({ required: true }) control!: FormControl;
 
-  countries: string[] = [ // Static list of countries
+  countries: string[] = [
     'Afghanistan', 'Albania', 'Algeria', 'Andorra', 'Angola', 'Antigua and Barbuda', 'Argentina', 'Armenia', 'Australia', 'Austria',
     'Azerbaijan', 'Bahamas', 'Bahrain', 'Bangladesh', 'Barbados', 'Belarus', 'Belgium', 'Belize', 'Benin', 'Bhutan', 'Bolivia',
     'Bosnia and Herzegovina', 'Botswana', 'Brazil', 'Brunei', 'Bulgaria', 'Burkina Faso', 'Burundi', 'Cabo Verde', 'Cambodia',
@@ -63,29 +46,13 @@ export class CountryInputComponent implements OnInit {
     'Uganda', 'Ukraine', 'United Arab Emirates', 'United Kingdom', 'United States', 'Uruguay', 'Uzbekistan', 'Vanuatu', 'Vatican City',
     'Venezuela', 'Vietnam', 'Yemen', 'Zambia', 'Zimbabwe'
   ];
-  filteredCountries!: Observable<string[]>;
 
-  constructor() { }
-
-  ngOnInit() {
-    if (!this.control) {
-      // This case should ideally not happen if the input is truly required,
-      // but adding validator defensively.
-      this.control = new FormControl('', CountryInputComponent.countryValidator(this.countries));
-    } else {
-      // Add the validator to the existing control instance
-      this.control.addValidators(CountryInputComponent.countryValidator(this.countries));
-      this.control.updateValueAndValidity(); // Ensure validator is checked initially
+  countryValidator: ValidatorFn = (control) => {
+    const value = control.value;
+    if (!value) {
+      return null;
     }
-
-    this.filteredCountries = this.control.valueChanges.pipe(
-      startWith(''),
-      map(value => this._filter(value || '')),
-    );
-  }
-
-  private _filter(value: string): string[] {
-    const filterValue = value.toLowerCase();
-    return this.countries.filter(country => country.toLowerCase().includes(filterValue));
-  }
+    const isValid = this.countries.some(country => country.toLowerCase() === value.toLowerCase());
+    return isValid ? null : { invalidCountry: true };
+  };
 }
