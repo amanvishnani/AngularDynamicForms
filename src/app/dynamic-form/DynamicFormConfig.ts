@@ -1,6 +1,6 @@
 export interface FormFieldConfig {
     name: string;
-    type: 'text' | 'email' | 'country' | 'name' | 'number';
+    type: 'text' | 'email' | 'country' | 'province' | 'name' | 'number'; // Add 'province' type
     validations?: {
       required?: boolean;
       pattern?: string;
@@ -19,4 +19,3 @@ export interface FormFieldConfig {
     name: string;
     subSections: FormSubSectionConfig[];
   }
-  

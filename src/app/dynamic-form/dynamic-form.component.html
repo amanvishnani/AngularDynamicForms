@@ -6,7 +6,8 @@
       <div *ngFor="let field of subSection.fields">
         <ng-container [ngSwitch]="field.type">
           <app-email-input *ngSwitchCase="'email'" [control]="$any(form).controls[field.name]"></app-email-input>
-          <app-country-input *ngSwitchCase="'country'" [control]="$any(form).controls[field.name]"></app-country-input> <!-- Add country input case -->
+          <app-country-input *ngSwitchCase="'country'" [control]="$any(form).controls[field.name]"></app-country-input>
+          <app-province-input *ngSwitchCase="'province'" [control]="$any(form).controls[field.name]"></app-province-input> <!-- Add province input case -->
           <!-- <app-input-country *ngSwitchCase="'country'" [formControl]="$any(form).controls[field.name]" [disabled]="field.disabled"></app-input-country> -->
           <mat-form-field *ngSwitchDefault>
             <mat-label>{{ field.name }}</mat-label>

@@ -5,7 +5,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { FormFieldConfig, FormSectionConfig } from './DynamicFormConfig';
 import { EmailInputComponent } from '../email-input/email-input.component';
-import { CountryInputComponent } from '../country-input/country-input.component'; // Import CountryInputComponent
+import { CountryInputComponent } from '../country-input/country-input.component';
+import { ProvinceInputComponent } from '../province-input/province-input.component'; // Import ProvinceInputComponent
 
 @Component({
   selector: 'app-dynamic-form',
@@ -14,7 +15,8 @@ import { CountryInputComponent } from '../country-input/country-input.component'
     ReactiveFormsModule,
     CommonModule,
     EmailInputComponent,
-    CountryInputComponent, // Add CountryInputComponent here
+    CountryInputComponent,
+    ProvinceInputComponent, // Add ProvinceInputComponent here
     MatFormFieldModule,
     MatInputModule,
   ],
