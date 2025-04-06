@@ -6,7 +6,8 @@ import { MatInputModule } from '@angular/material/input';
 import { FormFieldConfig, FormSectionConfig } from './DynamicFormConfig';
 import { EmailInputComponent } from '../email-input/email-input.component';
 import { CountryInputComponent } from '../country-input/country-input.component';
-import { ProvinceInputComponent } from '../province-input/province-input.component'; // Import ProvinceInputComponent
+import { ProvinceInputComponent } from '../province-input/province-input.component';
+import { DropdownInput } from "../dropdown-input/dropdown-input.component"; // Import ProvinceInputComponent
 
 @Component({
   selector: 'app-dynamic-form',
@@ -19,7 +20,8 @@ import { ProvinceInputComponent } from '../province-input/province-input.compone
     ProvinceInputComponent, // Add ProvinceInputComponent here
     MatFormFieldModule,
     MatInputModule,
-  ],
+    DropdownInput
+],
   templateUrl: './dynamic-form.component.html',
   styleUrl: './dynamic-form.component.css',
 })

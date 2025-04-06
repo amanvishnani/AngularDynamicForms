@@ -1,6 +1,7 @@
 export interface FormFieldConfig {
     name: string;
-    type: 'text' | 'email' | 'country' | 'province' | 'name' | 'number'; // Add 'province' type
+    type: 'text' | 'email' | 'country' | 'province' | 'name' | 'number' | 'dropdown'; 
+    options?: string[];
     validations?: {
       required?: boolean;
       pattern?: string;

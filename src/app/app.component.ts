@@ -31,6 +31,38 @@ export class AppComponent implements OnInit {
           ]
         }
       ]
+    },
+    {
+      name: 'Address',
+      subSections: [
+        {
+          name: 'Address Info',
+          fields: [
+            { name: 'Street', type: 'text', validations: { required: true } },
+            { name: 'City', type: 'text', validations: { required: true } },
+            { name: 'Zip Code', type: 'text', validations: { required: true } }
+          ]
+        }
+      ]
+    },
+    {
+      name: 'Preferences',
+      subSections: [
+        {
+          name: 'Theme',
+          fields: [
+            { name: 'Dark Mode', type: 'dropdown', options: ['Yes', 'No'] },
+            { name: 'Font Size', type: 'text', validations: { required: false } }
+          ]
+        },
+        {
+          name: 'Notifications',
+          fields: [
+            { name: 'Email Notifications', type: 'dropdown', options: ['Yes', 'No'] },
+            { name: 'SMS Notifications', type: 'dropdown', options: ['Yes', 'No'] }
+          ]
+        }
+      ]
     }
   ];
   
