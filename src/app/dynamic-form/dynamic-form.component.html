@@ -8,7 +8,7 @@
           <app-email-input *ngSwitchCase="'email'" [control]="$any(form).controls[field.name]"></app-email-input>
           <app-country-input *ngSwitchCase="'country'" [control]="$any(form).controls[field.name]"></app-country-input>
           <app-province-input *ngSwitchCase="'province'" [control]="$any(form).controls[field.name]"></app-province-input> <!-- Add province input case -->
-          <!-- <app-input-country *ngSwitchCase="'country'" [formControl]="$any(form).controls[field.name]" [disabled]="field.disabled"></app-input-country> -->
+          <app-dropdown-input *ngSwitchCase="'dropdown'" [control]="$any(form).controls[field.name]" [label]="field.name"[items]="field.options || []"></app-dropdown-input>
           <mat-form-field *ngSwitchDefault>
             <mat-label>{{ field.name }}</mat-label>
             <input matInput [type]="field.type" [formControl]="$any(form).controls[field.name]">
