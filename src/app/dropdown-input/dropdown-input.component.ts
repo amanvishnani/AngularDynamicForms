@@ -29,15 +29,14 @@ export class DropdownInput implements OnInit {
   @Input({ required: true }) control!: FormControl;
   @Input({ required: true }) items!: string[];
   @Input({ required: true }) label!: string;
-  @Input({ required: true }) validator!: ValidatorFn;
 
   filteredItems!: Observable<string[]>;
 
   ngOnInit() {
     if (!this.control) {
-      this.control = new FormControl('', this.validator);
+      this.control = new FormControl('', this.itemValidator);
     } else {
-      this.control.addValidators(this.validator);
+      this.control.addValidators(this.itemValidator);
       this.control.updateValueAndValidity();
     }
 
@@ -55,4 +54,13 @@ export class DropdownInput implements OnInit {
   clearValue() {
     this.control.setValue('');
   }
+
+  itemValidator: ValidatorFn = (control) => {
+    const value = control.value;
+    if (!value) {
+      return null;
+    }
+    const isValid = this.items.some(item => item.toLowerCase() === value.toLowerCase());
+    return isValid ? null : { invalidItem: true };
+  };
 }

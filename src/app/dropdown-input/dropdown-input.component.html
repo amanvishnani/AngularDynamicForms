@@ -1,4 +1,4 @@
-<mat-form-field appearance="outline" class="location-input-field">
+<mat-form-field appearance="fill" class="location-input-field">
   <mat-label>{{label}}</mat-label>
   <mat-icon matPrefix *ngIf="!control.value">search</mat-icon>
   <input type="text"
@@ -18,7 +18,7 @@
   <mat-error *ngIf="control.hasError('required')">
     {{label}} is required
   </mat-error>
-  <mat-error *ngIf="control.hasError('invalidLocation')">
+  <mat-error *ngIf="control.hasError('invalidItem')">
     Please select a valid {{label}} from the list
   </mat-error>
 </mat-form-field>

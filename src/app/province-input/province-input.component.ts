@@ -15,8 +15,7 @@ import { DropdownInput } from '../dropdown-input/dropdown-input.component';
     <app-dropdown-input
       [control]="control"
       [items]="provinces"
-      [label]="'Province/Territory'"
-      [validator]="provinceValidator">
+      [label]="'Province/Territory'">
     </app-dropdown-input>
   `,
   styleUrls: ['./province-input.component.css']
@@ -39,13 +38,4 @@ export class ProvinceInputComponent {
     'Saskatchewan',
     'Yukon'
   ];
-
-  provinceValidator: ValidatorFn = (control) => {
-    const value = control.value;
-    if (!value) {
-      return null;
-    }
-    const isValid = this.provinces.some(province => province.toLowerCase() === value.toLowerCase());
-    return isValid ? null : { invalidProvince: true };
-  };
 }

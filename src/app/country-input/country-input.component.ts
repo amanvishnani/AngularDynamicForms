@@ -15,8 +15,7 @@ import { DropdownInput } from '../dropdown-input/dropdown-input.component';
     <app-dropdown-input
       [control]="control"
       [items]="countries"
-      [label]="'Country'"
-      [validator]="countryValidator">
+      [label]="'Country'">
     </app-dropdown-input>
   `,
   styleUrls: ['./country-input.component.css']
@@ -46,13 +45,4 @@ export class CountryInputComponent {
     'Uganda', 'Ukraine', 'United Arab Emirates', 'United Kingdom', 'United States', 'Uruguay', 'Uzbekistan', 'Vanuatu', 'Vatican City',
     'Venezuela', 'Vietnam', 'Yemen', 'Zambia', 'Zimbabwe'
   ];
-
-  countryValidator: ValidatorFn = (control) => {
-    const value = control.value;
-    if (!value) {
-      return null;
-    }
-    const isValid = this.countries.some(country => country.toLowerCase() === value.toLowerCase());
-    return isValid ? null : { invalidCountry: true };
-  };
 }
