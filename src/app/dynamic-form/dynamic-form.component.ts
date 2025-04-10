@@ -66,6 +66,9 @@ export class DynamicFormComponent implements OnInit{
     if (field.validations?.pattern) validators.push(Validators.pattern(field.validations.pattern));
     if (field.validations?.min !== undefined) validators.push(Validators.min(field.validations.min));
     if (field.validations?.max !== undefined) validators.push(Validators.max(field.validations.max));
+    if(field.validations?.additionalValidations) {
+      validators.push(...field.validations.additionalValidations)
+    }
     return validators;
   }
 

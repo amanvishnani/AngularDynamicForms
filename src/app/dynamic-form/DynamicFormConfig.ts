@@ -1,3 +1,5 @@
+import { ValidatorFn } from "@angular/forms";
+
 export interface FormFieldConfig {
     name: string;
     type: 'text' | 'email' | 'country' | 'province' | 'name' | 'number' | 'dropdown' | 'taxYear'; 
@@ -7,6 +9,7 @@ export interface FormFieldConfig {
       pattern?: string;
       min?: number;
       max?: number;
+      additionalValidations?: ValidatorFn[]
     };
     disabled?: boolean;
   }

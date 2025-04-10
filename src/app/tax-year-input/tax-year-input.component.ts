@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormControl, ReactiveFormsModule, ValidatorFn, Validators } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { CommonModule } from '@angular/common';
@@ -23,7 +23,7 @@ export class TaxYearInputComponent {
   @Input({required: true})
   set control(control: FormControl) {
     this._control = control;
-    this._control.addValidators(Validators.pattern('^\\d{4}$'));
+    this._control.addValidators([Validators.pattern('^\\d{4}$')]);
   }
   get control(): FormControl {
     return this._control;
@@ -34,10 +34,10 @@ export class TaxYearInputComponent {
 
   getErrorMessage() {
     if (this.control.hasError('required')) {
-      return 'You must enter a value';
+      return 'Tax year is required';
     }
 
-    return this.control.hasError('pattern') ? 'Not a valid tax year' : '';
+    return this.control.hasError('pattern') ? 'Not a valid tax year' : 'Not a valid Tax Year';
   }
 
 }
