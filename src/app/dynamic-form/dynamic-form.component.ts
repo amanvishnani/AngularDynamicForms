@@ -8,6 +8,7 @@ import { EmailInputComponent } from '../email-input/email-input.component';
 import { CountryInputComponent } from '../country-input/country-input.component';
 import { ProvinceInputComponent } from '../province-input/province-input.component';
 import { DropdownInput } from "../dropdown-input/dropdown-input.component";
+import { TaxYearInputComponent } from '../tax-year-input/tax-year-input.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatGridListModule } from '@angular/material/grid-list';
@@ -21,6 +22,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
     EmailInputComponent,
     CountryInputComponent,
     ProvinceInputComponent,
+    TaxYearInputComponent,
     MatFormFieldModule,
     MatInputModule,
     DropdownInput,

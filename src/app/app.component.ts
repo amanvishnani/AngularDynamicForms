@@ -27,7 +27,8 @@ export class AppComponent implements OnInit {
             { name: 'Last Name', type: 'text', validations: { required: true }, disabled: true },
             { name: 'Email', type: 'email', validations: {  } },
             { name: 'Country', type: 'country' },
-            { name: 'Province', type: 'province' }
+            { name: 'Province', type: 'province' },
+            { name: 'Tax Year', type: 'taxYear'}
           ]
         }
       ]
