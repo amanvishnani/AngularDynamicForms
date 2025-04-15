@@ -1,9 +1,10 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewChild, Output, EventEmitter, AfterViewInit } from '@angular/core';
 import { FormControl, ReactiveFormsModule, ValidatorFn } from '@angular/forms';
+import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
-import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatAutocomplete, MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatIconModule } from '@angular/material/icon';
 import { CommonModule } from '@angular/common';
 import { Observable } from 'rxjs';
@@ -30,6 +31,9 @@ export class DropdownInput implements OnInit {
   @Input({ required: true }) items!: string[];
   @Input({ required: true }) label!: string;
 
+  @Output() optionSelected = new EventEmitter<MatAutocompleteSelectedEvent>();
+  @ViewChild(MatAutocomplete) autocomplete!: MatAutocomplete;
+
   filteredItems!: Observable<string[]>;
 
   ngOnInit() {
@@ -52,7 +56,7 @@ export class DropdownInput implements OnInit {
   }
 
   clearValue() {
-    this.control.setValue('');
+    this.control.setValue(null);
   }
 
   itemValidator: ValidatorFn = (control) => {
@@ -63,4 +67,10 @@ export class DropdownInput implements OnInit {
     const isValid = this.items.some(item => item.toLowerCase() === value.toLowerCase());
     return isValid ? null : { invalidItem: true };
   };
+
+  ngAfterViewInit() {
+    this.autocomplete.optionSelected.subscribe(event => {
+      this.optionSelected.emit(event);
+    });
+  }
 }
