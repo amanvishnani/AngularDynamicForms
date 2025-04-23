@@ -2,12 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { DynamicFormComponent } from "./dynamic-form/dynamic-form.component";
 import { FormSectionConfig } from './dynamic-form/DynamicFormConfig';
+import { TranslateService, TranslatePipe } from '@ngx-translate/core';
 
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [DynamicFormComponent],
+  imports: [DynamicFormComponent, TranslatePipe],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
@@ -15,6 +16,11 @@ export class AppComponent implements OnInit {
   async ngOnInit() {
   }
   title = 'app';
+
+  constructor(private translate: TranslateService) {
+    translate.setDefaultLang('en');
+    translate.use('en');
+  }
 
   config: FormSectionConfig[] = [
     {
