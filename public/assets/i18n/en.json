@@ -1,3 +1,6 @@
 {
-  "title": "Hello world!"
+  "title": "Hello world!",
+  "darkModePlaceholder": "Select theme",
+  "emailNotificationsPlaceholder": "Select email notification preference",
+  "smsNotificationsPlaceholder": "Select SMS notification preference"
 }

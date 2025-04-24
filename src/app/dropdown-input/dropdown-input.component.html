@@ -2,7 +2,7 @@
   <mat-label>{{label}}</mat-label>
   <mat-icon matPrefix *ngIf="!control.value">search</mat-icon>
   <input type="text"
-         placeholder="Select an item"
+         [placeholder]="getPlaceholder() | translate"
          aria-label="Item"
          matInput
          [formControl]="control"

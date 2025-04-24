@@ -9,6 +9,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { CommonModule } from '@angular/common';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-dropdown-input',
@@ -20,7 +21,8 @@ import { map, startWith } from 'rxjs/operators';
     MatInputModule,
     MatAutocompleteModule,
     MatIconModule,
-    MatButtonModule
+    MatButtonModule,
+    TranslatePipe
   ],
   templateUrl: './dropdown-input.component.html',
   styleUrls: ['./dropdown-input.component.css']
@@ -30,9 +32,14 @@ export class DropdownInput implements OnInit {
   @Input({ required: true }) control!: FormControl;
   @Input({ required: true }) items!: string[];
   @Input({ required: true }) label!: string;
+  @Input() placeholderKey?: string;
 
   @Output() optionSelected = new EventEmitter<MatAutocompleteSelectedEvent>();
   @ViewChild(MatAutocomplete) autocomplete!: MatAutocomplete;
+
+  public getPlaceholder(): string {
+    return this.placeholderKey ? this.placeholderKey : 'Select an item';
+  }
 
   filteredItems!: Observable<string[]>;
 

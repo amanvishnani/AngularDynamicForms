@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { DynamicFormComponent } from "./dynamic-form/dynamic-form.component";
-import { FormSectionConfig } from './dynamic-form/DynamicFormConfig';
+import { FormSectionConfig, FormFieldConfig } from './dynamic-form/DynamicFormConfig';
 import { TranslateService, TranslatePipe } from '@ngx-translate/core';
 
 
@@ -58,21 +58,21 @@ export class AppComponent implements OnInit {
         {
           name: 'Theme',
           fields: [
-            { name: 'Dark Mode', type: 'dropdown', options: ['Yes', 'No'] },
+            { name: 'Dark Mode', type: 'dropdown', options: ['Yes', 'No']},
             { name: 'Font Size', type: 'text', validations: { required: false } }
           ]
         },
         {
           name: 'Notifications',
           fields: [
-            { name: 'Email Notifications', type: 'dropdown', options: ['Yes', 'No'] },
-            { name: 'SMS Notifications', type: 'dropdown', options: ['Yes', 'No'] }
+            { name: 'Email Notifications', type: 'dropdown', options: ['Yes', 'No'], placeholderKey: 'emailNotificationsPlaceholder' } as FormFieldConfig,
+            { name: 'SMS Notifications', type: 'dropdown', options: ['Yes', 'No'], placeholderKey: 'smsNotificationsPlaceholder' } as FormFieldConfig
           ]
         }
       ]
     }
   ];
-  
+
 
 
 }

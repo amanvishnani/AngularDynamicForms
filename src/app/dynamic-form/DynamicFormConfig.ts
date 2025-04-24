@@ -8,12 +8,13 @@ export interface FormFieldConfig {
       required?: boolean;
       pattern?: string;
       min?: number;
-      max?: number;
-      additionalValidations?: ValidatorFn[]
+    max?: number;
+    additionalValidations?: ValidatorFn[];
+    placeholderKey?: string;
     };
     disabled?: boolean;
   }
-  
+
   export interface FormSubSectionConfig {
     name: string;
     fields: FormFieldConfig[];
